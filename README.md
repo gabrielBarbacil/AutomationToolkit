@@ -1,4 +1,4 @@
-# AutomationToolkit
+# Automation Toolkit
 
 > A set of tools and scripts focused on automating repetitive pentesting processes, from initial reconnaissance to reporting.
 
