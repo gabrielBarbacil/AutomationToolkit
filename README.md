@@ -58,7 +58,7 @@ python fuzzer.py -u http://target.com -w wordlist.txt
 
 ```
 AutomationToolkit/
-├── fase2-redes/
+├── fase2-network/
 │   ├── scanner.py           # Basic sequential port scanner
 │   ├── scanner_v2.py        # Threading with manual lock
 │   ├── scanner_v3.py        # ThreadPoolExecutor (controlled concurrency)
