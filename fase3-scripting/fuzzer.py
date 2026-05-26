@@ -2,7 +2,7 @@ import requests
 import argparse
 
 parser = argparse.ArgumentParser(description="Fuzzer de directorios")
-parser.add_argument("-u", "--url", required=True, help="URL base (ej: http://127.0.01:8080)")
+parser.add_argument("-u", "--url", required=True, help="URL base (ej: http://127.0.0.1:8080)")
 parser.add_argument("-w", "--wordlist", required=True, help="Ruta a la wordlist")
 args = parser.parse_args()
 
