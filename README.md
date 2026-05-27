@@ -12,6 +12,15 @@ AutomationToolkit is a personal collection of Python scripts built from scratch 
 
 ## Tools
 
+**toolkit/main.py — Unified entry point**
+
+All tools accessible from a single CLI with subcommands, similar to gobuster.
+
+```bash
+python main.py scan -t 192.168.1.1 -p 1-1024
+python main.py fuzz -u http://192.168.1.1 -w wordlist.txt
+```
+
 ### 🔍 Port Scanner — `fase2-network/scanner_final.py`
 
 Multithreaded TCP port scanner with banner grabbing and JSON output.
@@ -124,21 +133,27 @@ python spider.py -u http://target.com
 
 ```
 AutomationToolkit/
+├── toolkit/
+│   ├── main.py              # Unified entry point — subcommands
+│   ├── scanner.py           # Port scanner module
+│   ├── fuzzer.py            # Directory fuzzer module
+│   └── utils.py             # Shared utilities (in progress)
+│
 ├── python/
-│   ├── fase2-network/
-│   │   ├── scanner.py           # Basic sequential port scanner
-│   │   ├── scanner_v2.py        # Threading with manual lock
-│   │   ├── scanner_v3.py        # ThreadPoolExecutor
-│   │   └── scanner_final.py     # Full scanner — argparse + threads + JSON
+│   ├── fase2-redes/
+│   │   ├── scanner.py
+│   │   ├── scanner_v2.py
+│   │   ├── scanner_v3.py
+│   │   └── scanner_final.py
 │   │
 │   └── fase3-scripting/
-│       ├── fuzzer.py            # Directory fuzzer
-│       ├── brute_http.py        # HTTP login brute force
-│       ├── brute_ssh.py         # SSH brute force
-│       ├── spider.py            # Recursive web spider
-│       └── wordlist.txt         # Sample wordlist
+│       ├── fuzzer.py
+│       ├── brute_http.py
+│       ├── brute_ssh.py
+│       ├── spider.py
+│       └── wordlist.txt
 │
-├── bash/                        # Coming soon
+├── bash/                    # Coming soon
 └── README.md
 ```
 
@@ -159,10 +174,12 @@ All other modules (`socket`, `threading`, `argparse`, `json`) are part of the Py
 ## Usage Examples
 
 ```bash
-# Full recon workflow
-python scanner_final.py -t 192.168.1.1 -p 1-1024 -w 100
+# Full recon workflow via toolkit
+python main.py scan -t 192.168.1.1 -p 1-1024
+python main.py fuzz -u http://192.168.1.1 -w wordlist.txt
+
+# Standalone tools
 python spider.py -u http://192.168.1.1
-python fuzzer.py -u http://192.168.1.1 -w wordlist.txt
 python brute_http.py -u http://192.168.1.1/login -U users.txt -w passwords.txt
 python brute_ssh.py -t 192.168.1.1 -U users.txt -w passwords.txt
 ```
@@ -183,10 +200,11 @@ This toolkit is intended for **authorized security testing and educational purpo
 - [x] HTTP login brute force
 - [x] SSH brute force with rate limiting evasion
 - [x] Recursive web spider
+- [x] Modular architecture with unified entry point
+- [ ] Add brute and spider subcommands to toolkit
+- [ ] utils.py — shared reporting and output functions
+- [ ] Automated HTML reporting
 - [ ] Scapy — packet crafting and network evasion
-- [ ] Modular toolkit with unified entry point
-- [ ] Automated HTML/PDF reporting
-- [ ] Subdomain enumerator
 - [ ] Bash scripts for post-exploitation automation
 
 ---
